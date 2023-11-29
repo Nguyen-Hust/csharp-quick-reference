@@ -3,14 +3,16 @@
 Bộ tài liệu này được thiết kế như một dạng tài liệu tham khảo, giúp các bạn nắm được tất cả những khái niệm và thành phần của C#. Vì ở dạng tham khảo nên sẽ có một số khó khăn và không phù hợp với người học từ đầu, nếu chưa biết gì về C#, bạn nên tìm một giáo trình đơn giản hơn và dùng tài liệu này để tham khảo kỹ hơn trong quá trình học.
 
 ### Nội dung  
-- [Hàm Main](1-main-method.md)
+- [Hàm Main](main-method.md)
     - Tham số
     - Giá trị trả về của hàm Main
     - Hàm async Main
 
-- [Hệ thống kiểu dữ liệu](2-type-system.md)
+- [Hệ thống kiểu dữ liệu](type-system.md)
     - Tổng quan về hệ thống kiểu dữ liệu
       - Value type
+          - Các kiểu dữ liệu nullable
+          - Boxing và Unboxing
       - Reference type
       - Các kiểu dữ liệu có sẵn
       - Kiểu object
@@ -21,14 +23,29 @@ Bộ tài liệu này được thiết kế như một dạng tài liệu tham k
       - Struct
       - Ref struct
       - Null
-      - Các kiểu dữ liệu nullable
       - Các kiểu dữ liệu không được quản lý (Unmanaged types)
     - Khai báo biến
       - Từ khóa var
       - Giá trị mặc nhiên của biến
-- [Toán tử](3-operators.md)
-  - 
-- [Từ khóa](4-keywords.md)
+    - Kiểu generic
+      - Ràng buộc new
+      - Ràng buộc where
+    - Namespace
+      - Khai báo namespace
+      - using
+      - extern alias
+  - Ép kiểu
+- [Toán tử](operators.md)
+  - Các toán tử toán học
+  - Các toán tử logic
+  - Các toán tử trên bit
+  - Các toán tử so sánh bằng
+  - Các toán tử so sánh
+  - Các toán tử truy cập thành phần
+  - Các toán tử điều kiện
+  - Toán tử ! (null-forgiving)
+  - Toán tử =>
+- [Từ khóa](keywords.md)
     - Modifier
       - Access modifier
         - public
@@ -59,8 +76,8 @@ Bộ tài liệu này được thiết kế như một dạng tài liệu tham k
       - fixed
       - lock
       - yield
-- [Phát biểu](4-keywords.md)
-- [Phương thức](5-methods.md)
+- [Phát biểu](keywords.md)
+- [Phương thức](methods.md)
     - Khai báo
     - Gọi phương thức
     - Tham số
@@ -72,3 +89,4 @@ Bộ tài liệu này được thiết kế như một dạng tài liệu tham k
         - ref readonly
         - in
         - params
+- [Tập hợp](collections.md)
