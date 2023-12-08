@@ -7,7 +7,7 @@ Bạn có thể viết một chương trình đơn giản như sau:
 Console.WriteLine("Hello World!");
 ```
 
-Tính năng này cho phép chúng ta viết cách đoạn code ngắn, đặc biệt phù hợp với các cloud functions như Azure Functions,
+Tính năng này cho phép chúng ta viết các đoạn code ngắn, đặc biệt phù hợp với các cloud functions như Azure Functions,
 GitHub Actions và AWS Lambda Functions.
 
 Một số điểm cần lưu ý khi sử dụng top-level statements:
