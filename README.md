@@ -3,10 +3,10 @@
 Bộ tài liệu này được thiết kế như một dạng tài liệu tham khảo, giúp các bạn nắm được tất cả những khái niệm và thành phần của C#. Vì ở dạng tham khảo nên sẽ có một số khó khăn và không phù hợp với người học từ đầu, nếu chưa biết gì về C#, bạn nên tìm một giáo trình đơn giản hơn và dùng tài liệu này để tham khảo kỹ hơn trong quá trình học.
 
 ### Nội dung  
-- [Hàm Main](main-method.md)
-    - Tham số
-    - Giá trị trả về của hàm Main
-    - Hàm async Main
+- [Hàm Main](main-function/main-function.md)
+    - [Tham số](main-function/parameter.md)
+    - [Giá trị trả về của hàm Main](main-function/return-value.md)
+    - [Hàm async Main](main-function/async-main.md)
 
 - [Hệ thống kiểu dữ liệu](type-system.md)
     - Tổng quan về hệ thống kiểu dữ liệu
