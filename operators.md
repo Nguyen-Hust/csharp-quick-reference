@@ -1,17 +1,17 @@
 # Tham khảo nhanh C# – Operators
 
-## 5. Các toán tử trong C#
+## Các toán tử trong C#
 
-### 5.1 Ghi chú chung
+### 1. Ghi chú chung
 
 - Trừ toán tử mới (`??`, `?.`, `??=`, `^`, `..`, `>>>`, v.v.), đa số toán tử có từ **C# 1.0**.  
 - Một số toán tử là keyword (`new`, `typeof`, `await`, `checked`, …) – chi tiết xem thêm phần keywords tương ứng.
 
 ---
 
-### 5.2 Nhóm toán tử số học & tăng/giảm
+### 2. Nhóm toán tử số học & tăng/giảm
 
-#### 5.2.1 `+`, `-`, `*`, `/`, `%`
+#### 2.1 `+`, `-`, `*`, `/`, `%`
 
 - **Loại:** Số học (arithmetic) – C# 1.0  
 - `+`: cộng, nối chuỗi, cộng delegate.  
@@ -35,7 +35,7 @@ string s = "Hello " + "world"; // nối chuỗi
 
 ---
 
-#### 5.2.2 `++`, `--`
+#### 2.2 `++`, `--`
 
 - **Loại:** Unary – C# 1.0  
 - `++x`: tăng rồi trả giá trị mới.  
@@ -51,9 +51,9 @@ int b = x++; // x = 3, b = 2
 
 ---
 
-### 5.3 Nhóm so sánh & equality
+### 3. Nhóm so sánh & equality
 
-#### 5.3.1 `<`, `>`, `<=`, `>=`
+#### 3.1 `<`, `>`, `<=`, `>=`
 
 - **Loại:** Quan hệ – C# 1.0  
 - So sánh thứ tự cho số, `DateTime`, các type overload toán tử này.
@@ -64,7 +64,7 @@ if (age >= 18 && age < 65) { ... }
 
 ---
 
-#### 5.3.2 `==`, `!=`
+#### 3.2 `==`, `!=`
 
 - **Loại:** Equality – C# 1.0  
 - So sánh bằng / khác. Với `string`, so sánh nội dung; với reference type khác, mặc định so sánh tham chiếu (trừ khi override).
@@ -79,9 +79,9 @@ bool ne = (a != b);  // false
 
 ---
 
-### 5.4 Toán tử logic & bit
+### 4. Toán tử logic & bit
 
-#### 5.4.1 `!`, `&&`, `||`
+#### 4.1 `!`, `&&`, `||`
 
 - **Loại:** Logic boolean – C# 1.0 (short-circuit cho `&&`, `||`).
 
@@ -92,7 +92,7 @@ bool IsAdult(Person p)
 
 ---
 
-#### 5.4.2 `&`, `|`, `^`, `~`
+#### 4.2 `&`, `|`, `^`, `~`
 
 - **Loại:** Bitwise / non-short-circuit – C# 1.0
 
@@ -105,7 +105,7 @@ flags &= ~0b_0100;   // tắt bit 2
 
 ---
 
-#### 5.4.3 `<<`, `>>`, `>>>`
+#### 4.3 `<<`, `>>`, `>>>`
 
 - **Loại:** Shift – `<<`, `>>`: C# 1.0; `>>>`: C# 11.0  
 - `>>` là dịch phải **có dấu**; `>>>` là dịch phải **không dấu** (zero-fill).
@@ -119,9 +119,9 @@ int c = -1 >>> 1; // dịch phải không dấu
 
 ---
 
-### 5.5 Toán tử gán & gán kết hợp
+### 5. Toán tử gán & gán kết hợp
 
-#### 5.5.1 `=`
+#### 5.1 `=`
 
 - **Loại:** Gán – C# 1.0  
 
@@ -132,7 +132,7 @@ int y = (x = 10); // x = 10, y = 10
 
 ---
 
-#### 5.5.2 `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, `>>=`, `>>>=`
+#### 5.2 `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, `>>=`, `>>>=`
 
 - **Loại:** Compound assignment – C# 1.0, `>>>=` từ C# 11.0.  
 
@@ -144,9 +144,9 @@ x <<= 1;  // 16
 
 ---
 
-### 5.6 Toán tử điều kiện & null
+### 6. Toán tử điều kiện & null
 
-#### 5.6.1 `?:` – conditional (3 ngôi)
+#### 6.1 `?:` – conditional (3 ngôi)
 
 ```csharp
 string grade = score >= 50 ? "Pass" : "Fail";
@@ -154,7 +154,7 @@ string grade = score >= 50 ? "Pass" : "Fail";
 
 ---
 
-#### 5.6.2 `??` – null-coalescing (C# 2.0)
+#### 6.2 `??` – null-coalescing (C# 2.0)
 
 ```csharp
 string? name = null;
@@ -163,7 +163,7 @@ string display = name ?? "Unknown";
 
 ---
 
-#### 5.6.3 `??=` – null-coalescing assignment (C# 8.0)
+#### 6.3 `??=` – null-coalescing assignment (C# 8.0)
 
 ```csharp
 List<int>? numbers = null;
@@ -172,7 +172,7 @@ List<int>? numbers = null;
 
 ---
 
-#### 5.6.4 `?.`, `?[]` – null-conditional (C# 6.0)
+#### 6.4 `?.`, `?[]` – null-conditional (C# 6.0)
 
 ```csharp
 int? len = user?.Address?.Street?.Length;
@@ -181,7 +181,7 @@ var item = list?[0];
 
 ---
 
-#### 5.6.5 `!` (postfix) – null-forgiving (C# 8.0)
+#### 6.5 `!` (postfix) – null-forgiving (C# 8.0)
 
 ```csharp
 #nullable enable
@@ -192,9 +192,9 @@ string name = FindName()!; // “tôi chắc là không null”
 
 ---
 
-### 5.7 Truy cập, gọi hàm, index & range
+### 7. Truy cập, gọi hàm, index & range
 
-#### 5.7.1 `.` – truy cập thành viên
+#### 7.1 `.` – truy cập thành viên
 
 ```csharp
 user.Address.City
@@ -203,7 +203,7 @@ Math.PI
 
 ---
 
-#### 5.7.2 `()`, `[]` – gọi hàm & indexer
+#### 7.2 `()`, `[]` – gọi hàm & indexer
 
 ```csharp
 int Add(int a, int b) => a + b;
@@ -214,7 +214,7 @@ int first = list[0];
 
 ---
 
-#### 5.7.3 `^` – index from end (C# 8.0)
+#### 7.3 `^` – index from end (C# 8.0)
 
 ```csharp
 int[] arr = { 1, 2, 3, 4, 5 };
@@ -224,7 +224,7 @@ int secondLast = arr[^2]; // 4
 
 ---
 
-#### 5.7.4 `..` – range (C# 8.0)
+#### 7.4 `..` – range (C# 8.0)
 
 ```csharp
 int[] arr = { 0, 1, 2, 3, 4, 5 };
@@ -234,7 +234,7 @@ int[] last3 = arr[^3..];  // {3,4,5}
 
 ---
 
-#### 5.7.5 `::` – alias qualifier
+#### 7.5 `::` – alias qualifier
 
 ```csharp
 using Project = MyCompany.Project;
@@ -245,9 +245,9 @@ global::System.String s;
 
 ---
 
-### 5.8 Toán tử kiểu & cast
+### 8. Toán tử kiểu & cast
 
-#### 5.8.1 `(T)x` – cast
+#### 8.1 `(T)x` – cast
 
 ```csharp
 object o = 42;
@@ -256,7 +256,7 @@ int value = (int)o;
 
 ---
 
-#### 5.8.2 `is`, `as`
+#### 8.2 `is`, `as`
 
 ```csharp
 if (obj is string s && s.Length > 0)
@@ -268,7 +268,7 @@ if (stream != null) { ... }
 
 ---
 
-### 5.9 Lambda & expression-bodied members – `=>`
+### 9. Lambda & expression-bodied members – `=>`
 
 - **C#:** 3.0 (lambda), 6.0 (expression-bodied members).
 
@@ -282,7 +282,7 @@ public override string ToString()
 
 ---
 
-### 5.10 Toán tử pointer & unsafe
+### 10. Toán tử pointer & unsafe
 
 > Cần `unsafe` + bật “Allow unsafe code”.
 
@@ -302,7 +302,7 @@ unsafe
 
 ---
 
-### 5.11 Bảng tóm tắt nhóm toán tử
+### 11. Bảng tóm tắt nhóm toán tử
 
 | Nhóm toán tử                    | Ví dụ chính                                           | C# từ      |
 |---------------------------------|--------------------------------------------------------|-----------|
