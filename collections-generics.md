@@ -1,23 +1,31 @@
 # Collections & Generics nâng cao trong C#/.NET
 
-Chương này là “hộp đồ nghề” cho lập trình dữ liệu hằng ngày: **các interface chuẩn**, **bộ sưu tập (collections)** phổ biến (mutable/immutable/concurrent), **so sánh & băm** (equality/hashing), **hiệu năng** (capacity, pooling, `Span<T>`), và **generics nâng cao** (ràng buộc, phương sai, generic math).
-
----
-
 ## Mục lục
 
-1. [Các interface cốt lõi của Collections](#1-các-interface-cốt-lõi-của-collections)  
-2. [Nhóm Collections thường dùng (mutable)](#2-nhóm-collections-thường-dùng-mutable)  
-   2.1 [`List<T>`](#21-listt) · 2.2 [`LinkedList<T>`](#22-linkedlistt) · 2.3 [`Queue<T>`](#23-queuet) · 2.4 [`Stack<T>`](#24-stackt) · 2.5 [`Dictionary<TKey,TValue>`](#25-dictionarytkeytvalue) · 2.6 [`SortedDictionary<TKey,TValue>` vs `SortedList<TKey,TValue>`](#26-sorteddictionarytkeytvalue-vs-sortedlisttkeytvalue) · 2.7 [`HashSet<T>` / `SortedSet<T>`](#27-hashsett--sortedsett)
-3. [Collections bất biến (`System.Collections.Immutable`)](#3-collections-bất-biến-systemcollectionsimmutable)  
-4. [Collections đồng thời (thread-safe)](#4-collections-đồng-thời-thread-safe)  
-5. [Readonly & View: `ReadOnlyCollection<T>`, `IReadOnlyList<T>`…](#5-readonly--view-readonlycollectiont-ireadonlylistt)  
-6. [Mảng & các tiện ích hiệu năng: `Array`, `ArrayPool<T>`, `Span<T>`, `Memory<T>`](#6-mảng--các-tiện-ích-hiệu-năng-array-arraypolt-spant-memoryt)  
-7. [So sánh & băm: `IEquatable<T>`, `IComparable<T>`, `IEqualityComparer<T>`…](#7-so-sánh--băm-iequatablet-icomparablet-iequalitycomparerT)  
-8. [Hiệu năng & best practices khi dùng collections](#8-hiệu-năng--best-practices-khi-dùng-collections)  
-9. [Generics nâng cao](#9-generics-nâng-cao)  
-   9.1 [Ràng buộc (`where`) & mẫu thiết kế](#91-ràng-buộc-where--mẫu-thiết-kế) · 9.2 [Phương sai (variance): `out`/`in`](#92-phương-sai-variance-outin) · 9.3 [Generic math & `static abstract` members](#93-generic-math--static-abstract-members) · 9.4 [Comparer/Equality custom cho collections](#94-comparerequality-custom-cho-collections)  
-10. [Cheat sheet chọn cấu trúc dữ liệu](#10-cheat-sheet-chọn-cấu-trúc-dữ-liệu)
+- [Collections \& Generics nâng cao trong C#/.NET](#collections--generics-nâng-cao-trong-cnet)
+  - [Mục lục](#mục-lục)
+  - [1. Các interface cốt lõi của Collections](#1-các-interface-cốt-lõi-của-collections)
+  - [2. Nhóm Collections thường dùng (mutable)](#2-nhóm-collections-thường-dùng-mutable)
+    - [2.1 `List<T>`](#21-listt)
+    - [2.2 `LinkedList<T>`](#22-linkedlistt)
+    - [2.3 `Queue<T>`](#23-queuet)
+    - [2.4 `Stack<T>`](#24-stackt)
+    - [2.5 `Dictionary<TKey,TValue>`](#25-dictionarytkeytvalue)
+    - [2.6 `SortedDictionary<TKey,TValue>` vs `SortedList<TKey,TValue>`](#26-sorteddictionarytkeytvalue-vs-sortedlisttkeytvalue)
+    - [2.7 `HashSet<T>` / `SortedSet<T>`](#27-hashsett--sortedsett)
+  - [3. Collections bất biến (`System.Collections.Immutable`)](#3-collections-bất-biến-systemcollectionsimmutable)
+  - [4. Collections đồng thời (thread-safe)](#4-collections-đồng-thời-thread-safe)
+  - [5. Readonly \& View: `ReadOnlyCollection<T>`, `IReadOnlyList<T>`…](#5-readonly--view-readonlycollectiont-ireadonlylistt)
+  - [6. Mảng \& các tiện ích hiệu năng: `Array`, `ArrayPool<T>`, `Span<T>`, `Memory<T>`](#6-mảng--các-tiện-ích-hiệu-năng-array-arraypoolt-spant-memoryt)
+  - [7. So sánh \& băm: `IEquatable<T>`, `IComparable<T>`, `IEqualityComparer<T>`…](#7-so-sánh--băm-iequatablet-icomparablet-iequalitycomparert)
+  - [8. Hiệu năng \& best practices khi dùng collections](#8-hiệu-năng--best-practices-khi-dùng-collections)
+  - [9. Generics nâng cao](#9-generics-nâng-cao)
+    - [9.1 Ràng buộc (`where`) \& mẫu thiết kế](#91-ràng-buộc-where--mẫu-thiết-kế)
+    - [9.2 Phương sai (variance): `out`/`in`](#92-phương-sai-variance-outin)
+    - [9.3 Generic math \& `static abstract` members](#93-generic-math--static-abstract-members)
+    - [9.4 Comparer/Equality custom cho collections](#94-comparerequality-custom-cho-collections)
+  - [10. Cheat sheet chọn cấu trúc dữ liệu](#10-cheat-sheet-chọn-cấu-trúc-dữ-liệu)
+    - [Ví dụ tổng hợp](#ví-dụ-tổng-hợp)
 
 ---
 
