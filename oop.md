@@ -18,7 +18,6 @@
 7. [Events](#7-events)  
    7.1 [Ôn nhanh delegate](#71-ôn-nhanh-delegate) · 7.2 [`event` là gì?](#72-event-là-gì) · 7.3 [Đăng ký/hủy & phát sự kiện](#73-đăng-kýhủy--phát-sự-kiện) · 7.4 [Event pattern .NET (`EventHandler<T>`)](#74-event-pattern-net-eventhandlert) · 7.5 [Custom event accessor & weak event](#75-custom-event-accessor--weak-event) · 7.6 [Best practices & cảnh báo](#76-best-practices--cảnh-báo)
 8. [Best practices tổng hợp](#8-best-practices-tổng-hợp)
-9. [Cheat sheet nhanh](#9-cheat-sheet-nhanh)
 
 ---
 
@@ -533,55 +532,3 @@ public class Source
 - **Override đúng cặp**: nếu override `Equals` → override `GetHashCode`.  
 - **Sự kiện**: luôn hủy đăng ký, dùng pattern `OnXxx` và `EventHandler<T>`.  
 - **Thread-safety**: lock nơi cần, tránh race condition khi phát event/properties.
-
----
-
-## 9. Cheat sheet nhanh
-
-```csharp
-// Class & ctor
-public class A
-{
-    public string Name { get; set; } = "";
-    public A() {}
-    public A(string name) => Name = name;
-}
-
-// Inheritance & polymorphism
-public abstract class B { public abstract void Run(); }
-public class C : B
-{
-    public override void Run() { /* ... */ }
-}
-
-// Properties
-public class D
-{
-    private int _x;
-    public int X
-    {
-        get => _x;
-        set => _x = value >= 0 ? value : throw new ArgumentOutOfRangeException();
-    }
-    public int Y { get; init; } // C# 9
-}
-
-// Indexer
-public class E
-{
-    private readonly Dictionary<string,int> _m = new();
-    public int this[string k] { get => _m[k]; set => _m[k] = value; }
-}
-
-// Events
-public class F
-{
-    public event EventHandler? Happened;
-    protected virtual void OnHappened() => Happened?.Invoke(this, EventArgs.Empty);
-}
-```
-
----
-
-**Gợi ý đọc thêm**: chương *Methods* (gọi/khai báo phương thức, modifiers) và *Type System* (giá trị/tham chiếu, struct/enum, nullable, generic…).
-
