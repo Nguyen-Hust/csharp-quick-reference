@@ -1,8 +1,10 @@
-# Hệ thống kiểu dữ liệu trong C# (Common Type Sytem)
+# Hệ thống kiểu dữ liệu (Common Type Sytem)
+
+---
 
 ## Mục lục
 
-- [Hệ thống kiểu dữ liệu trong C# (Common Type Sytem)](#hệ-thống-kiểu-dữ-liệu-trong-c-common-type-sytem)
+- [Hệ thống kiểu dữ liệu (Common Type Sytem)](#hệ-thống-kiểu-dữ-liệu-common-type-sytem)
   - [Mục lục](#mục-lục)
   - [1. Tổng quan CTS/CLS \& Runtime](#1-tổng-quan-ctscls--runtime)
   - [2. Bức tranh bộ nhớ: Stack/Managed Heap \& GC](#2-bức-tranh-bộ-nhớ-stackmanaged-heap--gc)

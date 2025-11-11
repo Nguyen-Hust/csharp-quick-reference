@@ -1,6 +1,8 @@
 # Lập trình hướng đối tượng trong C#  
 *(Class, OOP, Properties/Indexers, Events)*
 
+---
+
 ## Mục lục
 
 1. [Class & Object cơ bản](#1-class--object-cơ-bản)  

@@ -1,23 +1,27 @@
-# Tham khảo nhanh C# – Preprocessor directives
-
-## 1. Preprocessor directives trong C#
+# Preprocessor directives
 
 > Preprocessor directives ảnh hưởng tới **quá trình biên dịch**: bật/tắt code, cảnh báo, nullable, v.v.  
 > Phần lớn có từ C# 1.0; riêng `#nullable` từ C# 8.0.
 
-- `#define`
-- `#undef`
-- `#if`, `#elif`, `#else`, `#endif`
-- `#warning`
-- `#error`
-- `#line`
-- `#region`, `#endregion`
-- `#pragma` (thường dùng `#pragma warning`)
-- `#nullable`
+---
+
+## Mục lục
+
+- [Preprocessor directives](#preprocessor-directives)
+  - [Mục lục](#mục-lục)
+    - [1. `#define` – Định nghĩa symbol điều kiện](#1-define--định-nghĩa-symbol-điều-kiện)
+    - [2. `#undef` – Hủy symbol](#2-undef--hủy-symbol)
+    - [3. `#if`, `#elif`, `#else`, `#endif` – Biên dịch có điều kiện](#3-if-elif-else-endif--biên-dịch-có-điều-kiện)
+    - [4. `#warning` – Sinh cảnh báo](#4-warning--sinh-cảnh-báo)
+    - [5. `#error` – Sinh lỗi biên dịch](#5-error--sinh-lỗi-biên-dịch)
+    - [6. `#line` – Điều khiển số dòng \& file name](#6-line--điều-khiển-số-dòng--file-name)
+    - [7. `#region` / `#endregion` – Gom nhóm code](#7-region--endregion--gom-nhóm-code)
+    - [8. `#pragma` (thường dùng `#pragma warning`)](#8-pragma-thường-dùng-pragma-warning)
+    - [9. `#nullable` – Nullable reference types](#9-nullable--nullable-reference-types)
 
 ---
 
-### 2. `#define` – Định nghĩa symbol điều kiện
+### 1. `#define` – Định nghĩa symbol điều kiện
 
 **Mục đích:** Định nghĩa symbol dùng trong `#if`.  
 **Phiên bản C#:** 1.0  
@@ -42,7 +46,7 @@ class Program
 
 ---
 
-### 3. `#undef` – Hủy symbol
+### 2. `#undef` – Hủy symbol
 
 **Mục đích:** Hủy định nghĩa symbol trước đó.  
 **Phiên bản C#:** 1.0  
@@ -58,7 +62,7 @@ class Program
 
 ---
 
-### 4. `#if`, `#elif`, `#else`, `#endif` – Biên dịch có điều kiện
+### 3. `#if`, `#elif`, `#else`, `#endif` – Biên dịch có điều kiện
 
 **Mục đích:** Bao/bỏ đoạn code dựa trên symbol.  
 **Phiên bản C#:** 1.0  
@@ -86,7 +90,7 @@ class Program
 
 ---
 
-### 5. `#warning` – Sinh cảnh báo
+### 4. `#warning` – Sinh cảnh báo
 
 **Mục đích:** Tạo warning custom khi build.  
 **Phiên bản C#:** 1.0  
@@ -97,7 +101,7 @@ class Program
 
 ---
 
-### 6. `#error` – Sinh lỗi biên dịch
+### 5. `#error` – Sinh lỗi biên dịch
 
 **Mục đích:** Chặn build trong cấu hình không hợp lệ.  
 **Phiên bản C#:** 1.0  
@@ -110,7 +114,7 @@ class Program
 
 ---
 
-### 7. `#line` – Điều khiển số dòng & file name
+### 6. `#line` – Điều khiển số dòng & file name
 
 **Mục đích:** Điều khiển line/file trong error/warning (dùng cho code generator).  
 **Phiên bản C#:** 1.0  
@@ -123,7 +127,7 @@ int x = "not int"; // lỗi sẽ báo ở dòng 200, file "GeneratedFile.cs"
 
 ---
 
-### 8. `#region` / `#endregion` – Gom nhóm code
+### 7. `#region` / `#endregion` – Gom nhóm code
 
 **Mục đích:** Tạo vùng có thể collapse/expand trong IDE.  
 **Phiên bản C#:** 1.0  
@@ -142,7 +146,7 @@ public class MyService
 
 ---
 
-### 9. `#pragma` (thường dùng `#pragma warning`)
+### 8. `#pragma` (thường dùng `#pragma warning`)
 
 **Mục đích:** Điều khiển behavior compiler (đặc biệt warning).  
 **Phiên bản C#:** 1.0  
@@ -162,7 +166,7 @@ void Foo()
 
 ---
 
-### 10. `#nullable` – Nullable reference types
+### 9. `#nullable` – Nullable reference types
 
 **Mục đích:** Bật/tắt **nullable context** cho file/vùng code.  
 **Phiên bản C#:** 8.0  
@@ -182,17 +186,3 @@ string oldStyle = null;     // Không warning
 - `#nullable enable` / `disable` / `restore`  
 - Có thể dùng `annotations` / `warnings` để điều chỉnh chi tiết.
 
----
-
-### 11. Bảng tóm tắt preprocessor directives
-
-| Directive                            | C#   | Mục đích chính                                  |
-| ------------------------------------ | ---- | ----------------------------------------------- |
-| `#define` / `#undef`                 | 1.0  | Định nghĩa / hủy symbol cho biên dịch điều kiện |
-| `#if` / `#elif` / `#else` / `#endif` | 1.0  | Bao/bỏ code theo symbol                         |
-| `#warning`                           | 1.0  | Sinh cảnh báo custom                            |
-| `#error`                             | 1.0  | Sinh lỗi biên dịch custom                       |
-| `#line`                              | 1.0  | Điều khiển số dòng & tên file                   |
-| `#region` / `#endregion`             | 1.0  | Gom nhóm code để IDE collapse/expand            |
-| `#pragma warning`                    | 1.0+ | Bật/tắt/điều chỉnh warning                      |
-| `#nullable`                          | 8.0  | Bật/tắt phân tích nullable reference types      |
