@@ -1,4 +1,4 @@
-# LINQ (Language Integrated Query) trong C#/.NET
+# LINQ (Language Integrated Query)
 
 **LINQ** đem cú pháp truy vấn vào C#, thống nhất cách làm việc với **tập hợp đối tượng**, **XML**, **CSDL**, **JSON**, **in-memory** và cả **stream async** (thông qua `IAsyncEnumerable<T>` + gói mở rộng).  
 
@@ -6,7 +6,7 @@
 
 ## Mục lục
 
-- [LINQ (Language Integrated Query) trong C#/.NET](#linq-language-integrated-query-trong-cnet)
+- [LINQ (Language Integrated Query)](#linq-language-integrated-query)
   - [Mục lục](#mục-lục)
   - [1. Tư duy LINQ \& hai cú pháp](#1-tư-duy-linq--hai-cú-pháp)
   - [2. Deferred vs Immediate execution](#2-deferred-vs-immediate-execution)
