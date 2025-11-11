@@ -1,5 +1,7 @@
 # Collections & Generics
 
+---
+
 ## Mục lục
 
 - [Collections \& Generics](#collections--generics)

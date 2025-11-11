@@ -1,5 +1,25 @@
 # Hệ thống kiểu dữ liệu (Common Type Sytem)
 
+C# là một ngôn ngữ `strongly typed`, có nghĩa là các kiểu dữ liệu được sử dụng rất chặt chẽ, và bạn luôn phải 
+xác định kiểu cụ thể của một biến, hằng hoặc biểu thức. Vì C# là ngôn ngữ được thiết kế cho .NET nên nó hỗ trợ 
+đầy đủ hệ thống kiểu trong .NET, bao gồm các kiểu dữ liệu primitive và cả một tập rất lớn các kiểu phức tạp được
+khai báo trong hệ thống thư viện của .NET.
+
+Khi nói về một kiểu dữ liệu, ta sẽ có các thông tin sau:
+  - Kích cỡ không gian bộ nhớ mà kiểu dữ liệu đó chiếm.
+  - Các giá trị nhỏ nhất và lớn nhất của kiểu dữ liệu.
+  - Các thành phần bên trong kiểu dữ liệu (phương thức, các trường, thuộc tính...).
+  - Kiểu dữ liệu cơ sở mà kiểu dữ liệu này thừa kế.
+  - Các interface được implement.
+  - Các toán tử mà kiểu dữ liệu hỗ trợ.
+  
+Trình biên dịch có những thông tin trên về tất cả các kiểu dữ liệu, nhờ đó nó hỗ trợ an toàn kiểu (type safe), 
+bạn không thể gán các giá trị không tương thích vào cho các biến, ví dụ không thể gán một giá trị số thực vào
+một biến kiểu số nguyên (nhưng ngược lại thì được).
+
+Các thông tin kiểu dữ liệu trên cũng được lưu vào file thực thi (.exe hoặc .dll). Trình runtime của .NET (CLR) 
+sẽ dùng các thông tin này để đảm bảo an toàn kiểu khi nó cấp phát và thu hồi bộ nhớ.
+
 ---
 
 ## Mục lục
@@ -38,12 +58,20 @@
 
 ## 1. Tổng quan CTS/CLS & Runtime
 
-- **CTS (Common Type System)**: chuẩn định nghĩa tất cả kiểu trong .NET (giá trị/tham chiếu, kế thừa, generic…).  
-- **CLS (Common Language Specification)**: tập con quy tắc để ngôn ngữ khác nhau tương tác (interop) thuận lợi.  
-- **CLR**: runtime thực thi IL, quản lý **GC**, **JIT**, kiểm tra an toàn kiểu (type-safety).  
-- **C#** biên dịch → **IL** (MSIL/CIL), chứa **metadata** (thông tin type, thuộc tính, method…).
+Tất cả các kiểu dữ liệu trong .NET được được thiết kế để dùng bởi bất kỳ ngôn ngữ .NET nào, vì vậy người 
+ta gọi nó là "Hệ thống kiểu chung" (CTS). Có hai đặc điểm quan trọng với CTS:
 
-Hiểu CTS/CLS giúp bạn thiết kế API tương thích, đặc biệt khi publish library.
+- Hỗ trợ thừa kế: tất cả các kiểu dữ liệu trong CTS đều hỗ trợ thừa kế, một kiểu dữ liệu có thể thừa kế từ một
+kiểu khác, và tất cả các kiểu dữ liệu, bao gồm cả các kiểu nguyên thủy (primitive type) đều thừa kế trực tiếp
+hoặc gián tiếp từ System.Object (object).
+- Các kiểu dữ liệu trong .NET được chia làm hai loại: [value type](#31-value-types) (kiểu giá trị) 
+và [reference type](#32-reference-types) (kiểu tham chiếu). Các kiểu dữ liệu được khai báo với `struct` là `value type`,
+các kiểu dữ liệu được khai báo với `class` hoặc `record` là reference type.
+
+> - **CTS (Common Type System)**: chuẩn định nghĩa tất cả kiểu trong .NET (giá trị/tham chiếu, kế thừa, generic…).  
+> - **CLS (Common Language Specification)**: tập con quy tắc để ngôn ngữ khác nhau tương tác (interop) thuận lợi.  
+> - **CLR**: runtime thực thi IL, quản lý **GC**, **JIT**, kiểm tra an toàn kiểu (type-safety).  
+> - **C#** biên dịch → **IL** (MSIL/CIL), chứa **metadata** (thông tin type, thuộc tính, method…).
 
 ---
 

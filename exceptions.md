@@ -1,5 +1,7 @@
 # Exception & Error Handling trong C#
 
+---
+
 ## Mục lục
 
 - [Exception \& Error Handling trong C#](#exception--error-handling-trong-c)
@@ -7,17 +9,17 @@
   - [1. Tổng quan \& triết lý](#1-tổng-quan--triết-lý)
   - [2. Cú pháp cơ bản: `try`/`catch`/`finally`/`throw`](#2-cú-pháp-cơ-bản-trycatchfinallythrow)
   - [3. Hệ phân cấp ngoại lệ \& các ngoại lệ phổ biến](#3-hệ-phân-cấp-ngoại-lệ--các-ngoại-lệ-phổ-biến)
-  - [4. Bắt ngoại lệ đúng cách](#4-bắt-ngoại-lệ-đúng-cách)
+  - [4. Bắt `Exception` đúng cách](#4-bắt-exception-đúng-cách)
     - [4.1 Bắt cụ thể trước, tổng quát sau](#41-bắt-cụ-thể-trước-tổng-quát-sau)
     - [4.2 Không bắt `Exception` vô tội vạ](#42-không-bắt-exception-vô-tội-vạ)
-    - [4.3 `catch` rỗng là mùi hôi (code smell)](#43-catch-rỗng-là-mùi-hôi-code-smell)
+    - [4.3 `catch` rỗng là code smell](#43-catch-rỗng-là-code-smell)
   - [5. Rethrow, bọc \& bảo toàn stack trace](#5-rethrow-bọc--bảo-toàn-stack-trace)
     - [5.1 Rethrow đúng](#51-rethrow-đúng)
     - [5.2 Bọc ngoại lệ với InnerException](#52-bọc-ngoại-lệ-với-innerexception)
     - [5.3 Bảo toàn stack trace thủ công (nâng cao)](#53-bảo-toàn-stack-trace-thủ-công-nâng-cao)
   - [6. Exception filter với `when`](#6-exception-filter-với-when)
   - [7. Quản lý tài nguyên: `finally`, `using`, `await using`](#7-quản-lý-tài-nguyên-finally-using-await-using)
-    - [7.1 `finally` để đảm bảo thu hồi](#71-finally-để-đảm-bảo-thu-hồi)
+    - [7.1 Sử dụng `finally` để đảm bảo thu hồi](#71-sử-dụng-finally-để-đảm-bảo-thu-hồi)
     - [7.2 `using` \& `await using` (khuyến nghị)](#72-using--await-using-khuyến-nghị)
   - [8. Thiết kế ngoại lệ tuỳ biến (Custom exceptions)](#8-thiết-kế-ngoại-lệ-tuỳ-biến-custom-exceptions)
     - [8.1 Khi nào cần?](#81-khi-nào-cần)
