@@ -43,7 +43,7 @@
 
 - Ngoại lệ là **luồng điều khiển bất thường** dùng để báo lỗi **không mong đợi**.  
 - **Không dùng ngoại lệ cho luồng điều khiển bình thường** (ví dụ kiểm tra tồn tại file, parse… → ưu tiên `TryXxx`).  
-- Ngoại lệ **tốn chi phí**: ném/bắt tạo stack trace → tránh ở hot-path.
+- Ngoại lệ **tốn chi phí** do phải xây dựng lại stack trace và thông tin Exception: ném/bắt tạo stack trace → tránh ở hot-path.
 
 ---
 
@@ -115,7 +115,7 @@ System.Object
 
 ---
 
-## 4. Bắt ngoại lệ đúng cách
+## 4. Bắt `Exception` đúng cách
 
 ### 4.1 Bắt cụ thể trước, tổng quát sau
 
@@ -139,7 +139,7 @@ catch (Exception ex) // tổng quát, đặt sau
 - Chỉ bắt ở **biên rìa** (UI, job runner, middleware) để log và hiển thị thông báo thân thiện.  
 - Ở tầng trong (domain, repository…), hãy để lỗi **bubble up**.
 
-### 4.3 `catch` rỗng là mùi hôi (code smell)
+### 4.3 `catch` rỗng là code smell
 
 ```csharp
 catch
@@ -179,7 +179,7 @@ catch (FormatException ex)
 }
 ```
 
-- Cung cấp **ngữ cảnh miền** giàu thông tin (`ConfigurationException`) nhưng **không làm mất** exception gốc (`InnerException`).
+- Cung cấp **ngữ cảnh** giàu thông tin (`ConfigurationException`) nhưng **không làm mất** exception gốc (`InnerException`).
 
 ### 5.3 Bảo toàn stack trace thủ công (nâng cao)
 
@@ -220,7 +220,7 @@ catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.TooManyReq
 
 ## 7. Quản lý tài nguyên: `finally`, `using`, `await using`
 
-### 7.1 `finally` để đảm bảo thu hồi
+### 7.1 Sử dụng `finally` để đảm bảo thu hồi
 
 ```csharp
 Stream? s = null;
