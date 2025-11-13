@@ -1,7 +1,7 @@
 # Lập trình bất đồng bộ trong C#  
 *(async/await, Task, async streams)*
 
-Chương này tập trung vào **lập trình bất đồng bộ (asynchronous)** trong C#:
+Chương này tập trung vào **lập trình bất đồng bộ (asynchronous)** trong C# 5.0 (.NET 4.5):
 
 - `async` / `await` và cơ chế state machine bên dưới,
 - Các kiểu trả về: `Task`, `Task<T>`, `ValueTask`, `ValueTask<T>`, `async void`,
@@ -31,7 +31,7 @@ Chương này tập trung vào **lập trình bất đồng bộ (asynchronous)*
 Bài toán kinh điển:
 
 - Bạn cần gọi HTTP, truy vấn DB, đọc/ghi file, gọi một service từ xa…
-- Nếu dùng API đồng bộ (blocking), thread sẽ **ngồi chờ** I/O → lãng phí tài nguyên, UI treo, server khó scale.
+- Nếu dùng API đồng bộ (blocking), thread sẽ phải **chờ** I/O → lãng phí tài nguyên, UI treo, server khó scale.
 
 Ví dụ blocking:
 
@@ -77,7 +77,7 @@ public async Task<string> DownloadAsync(string url)
 
 Đặc trưng:
 
-- **Không phải** cứ `async` là chạy trên thread khác – nó **chạy trên thread hiện tại** cho tới khi gặp `await` trên một tác vụ chưa hoàn thành.
+- **Không phải** cứ `async` là chạy trên thread khác – nó **chạy trên thread hiện tại** cho tới khi gặp `await` trên một tác vụ chưa hoàn thành (có nghĩa là nếu một bên trong một method không có bất kỳ lời gọi await nào thì method sẽ hoàn toàn chỉ xử lý đồng bộ, để chạy method hoàn toàn đồng bộ hãy tham khảo phần Thread).
 - Tại mỗi `await`:
   - Nếu tác vụ đã xong → chạy tiếp như bình thường.
   - Nếu chưa xong → method **tạm thoát ra**, trả về một `Task` cho caller, và khi tác vụ xong, nó sẽ quay lại chạy từ sau `await`.
