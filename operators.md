@@ -175,6 +175,18 @@ obj!.Property // null-forgiving: cam kết với compiler là không null (cẩn
 
 - `??` và `??=` chỉ kiểm `== null`.  
 - `?.` trả **null** nếu vế trái null, không ném NRE. Chuỗi `a?.B?.C` rất hữu dụng cho truy cập sâu.
+- Từ C# 14, `?.` có thể dùng trong phép gán (Null-conditional assignment)
+
+```csharp
+// trước C# 14
+if (customer is not null)
+{
+    customer.Order = GetCurrentOrder();
+}
+
+// từ C# 14
+customer?.Order = GetCurrentOrder();
+```
 
 ---
 
