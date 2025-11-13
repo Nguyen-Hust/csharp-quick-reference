@@ -13,6 +13,7 @@ Tham khảo khóa học này nếu bạn chưa biết về C# và .NET: [Khóa h
 - [Hàm Main](main-function.md)
 - [Hệ thống kiểu dữ liệu](typesystem.md)
 - [Chỉ thị tiền biên dịch](preprocessor-directives.md)
+- [Literal](literals.md)
 - [Toán tử](operators.md)
 - [Từ khóa](keywords.md)
 - [Phát biểu](statements.md)
