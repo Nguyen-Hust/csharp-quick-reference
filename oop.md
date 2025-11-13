@@ -329,13 +329,26 @@ public int Age
 }
 ```
 
-### 5.2 Getter/setter nâng cao
+### 5.2 Truy cập backing field (C#14)
+
+- Sử dụng từ khóa **field** để truy cập vào backing field với các getter/setter tự động.
+private string _msg;
+
+```csharp
+public string Message
+{
+    get => _msg;
+    set => _msg = value ?? throw new ArgumentNullException(nameof(value));
+}
+```
+
+### 5.3 Getter/setter nâng cao
 
 - **Access khác nhau** cho get/set: `public int Age { get; internal set; }`.  
 - **Static property**: `public static string Version { get; } = "1.0";`  
 - **Chỉ-get** (computed): `public double Area => Width * Height;`
 
-### 5.3 `init`-only (C# 9) & `required` (C# 11)
+### 5.4 `init`-only (C# 9) & `required` (C# 11)
 
 ```csharp
 public class Order
@@ -350,7 +363,7 @@ var o = new Order { Id = "A001", Note = "COD" };
 - `init` cho phép gán tại init (ctor/object initializer), *không* gán sau đó.  
 - `required` buộc caller cung cấp giá trị trước khi object usable.
 
-### 5.4 Expression-bodied/Computed property
+### 5.5 Expression-bodied/Computed property
 
 ```csharp
 public string FullName => $"{LastName}, {FirstName}";
@@ -358,7 +371,7 @@ public string FullName => $"{LastName}, {FirstName}";
 
 - Tránh lưu trữ dư thừa; tính toán khi cần.
 
-### 5.5 Property & thread-safety
+### 5.6 Property & thread-safety
 
 - Không phải property nào cũng “nhẹ”; nếu có tính toán/chậm → xem xét cache lại (lazy).  
 - Nếu set/get thay đổi state dùng chung, cân nhắc **lock** hoặc cấu trúc thread-safe.  
@@ -373,7 +386,7 @@ public int Count
 }
 ```
 
-### 5.6 `INotifyPropertyChanged` tóm tắt
+### 5.7 `INotifyPropertyChanged` tóm tắt
 
 ```csharp
 public class Person : INotifyPropertyChanged
