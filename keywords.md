@@ -538,7 +538,24 @@ if (!ok)
 
 ---
 
-## 25. `finally`
+## 25. `field`
+
+- **Loại:** reserved · **C#:** 14.0  
+- **Mục đích:** Cho phép truy cập vào backing field.
+
+**Ví dụ:**
+
+```csharp
+public string Message
+{
+    get;
+    set => field = value ?? throw new ArgumentNullException(nameof(value));
+}
+```
+
+---
+
+## 26. `finally`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Khối cleanup luôn chạy sau `try`/`catch` (dù có exception hay không).
@@ -563,7 +580,7 @@ Cẩn thận không ném exception mới từ `finally` (dễ che mất exceptio
 
 ---
 
-## 26. `fixed`
+## 27. `fixed`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Trong `unsafe`, pin object để lấy địa chỉ cố định (pointer) cho interop/native.
@@ -584,7 +601,7 @@ unsafe
 
 ---
 
-## 27. `float`
+## 28. `float`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số thực 32-bit (nhẹ hơn nhưng kém chính xác hơn `double`).
@@ -597,7 +614,7 @@ float f = 1.23f;
 
 ---
 
-## 28. `for`
+## 29. `for`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Vòng lặp có phần khởi tạo, điều kiện, bước tăng/giảm rõ ràng.
@@ -613,7 +630,7 @@ for (int i = 0; i < items.Length; i++)
 
 ---
 
-## 29. `foreach`
+## 30. `foreach`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Vòng lặp tiện dụng trên mọi `IEnumerable` / `IEnumerable<T>`.
@@ -629,7 +646,7 @@ foreach (var item in items)
 
 ---
 
-## 30. `goto`
+## 31. `goto`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Nhảy tới label hoặc `case`/`default` trong `switch`.
@@ -653,7 +670,7 @@ Thường được xem là “code smell”, trừ vài pattern rất hiếm (v�
 
 ---
 
-## 31. `if`
+## 32. `if`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Câu lệnh rẽ nhánh cơ bản.
@@ -667,7 +684,7 @@ if (user is null)
 
 ---
 
-## 32. `implicit`
+## 33. `implicit`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Toán tử chuyển kiểu ngầm định (không cần cast).
@@ -688,7 +705,7 @@ Meter m = 5.0; // implicit
 
 ---
 
-## 33. `in`
+## 34. `in`
 
 - **Loại:** reserved · **C#:** 1.0 (thêm ý nghĩa mới ở C# 7.2)  
 - **Mục đích:**  
@@ -707,7 +724,7 @@ public static double Distance(in Point a, in Point b)
 
 ---
 
-## 34. `int`
+## 35. `int`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 32-bit có dấu, kiểu integer phổ biến nhất.
@@ -720,7 +737,7 @@ int count = 42;
 
 ---
 
-## 35. `interface`
+## 36. `interface`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Định nghĩa hợp đồng (method, property, event…) mà class/struct phải thực hiện.
@@ -736,7 +753,7 @@ public interface ILogger
 
 ---
 
-## 36. `internal`
+## 37. `internal`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Access modifier – chỉ thấy được trong cùng assembly.
@@ -749,7 +766,7 @@ internal class InternalHelper { }
 
 ---
 
-## 37. `is`
+## 38. `is`
 
 - **Loại:** reserved · **C#:** 1.0 (pattern matching từ C# 7.0)  
 - **Mục đích:**  
@@ -767,7 +784,7 @@ if (obj is string s && s.Length > 0)
 
 ---
 
-## 38. `lock`
+## 39. `lock`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Đồng bộ truy cập giữa các thread (`Monitor.Enter/Exit`).
@@ -789,7 +806,7 @@ public void Increment()
 
 ---
 
-## 39. `long`
+## 40. `long`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 64-bit có dấu (`System.Int64`).
@@ -802,7 +819,7 @@ long big = 1_000_000_000_000L;
 
 ---
 
-## 40. `namespace`
+## 41. `namespace`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Tổ chức không gian tên cho type.
@@ -818,7 +835,7 @@ namespace MyApp.Core
 
 ---
 
-## 41. `new`
+## 42. `new`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:**  
@@ -844,7 +861,7 @@ public class Derived : Base
 
 ---
 
-## 42. `null`
+## 43. `null`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Giá trị “không tham chiếu tới object nào” cho reference type & nullable value type.
@@ -861,7 +878,7 @@ if (name is null)
 
 ---
 
-## 43. `object`
+## 44. `object`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Kiểu gốc của mọi reference type (alias cho `System.Object`).
@@ -875,7 +892,7 @@ int x = (int)o;  // unboxing
 
 ---
 
-## 44. `operator`
+## 45. `operator`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Định nghĩa toán tử overload (`+`, `-`, `==`, conversion…) cho type custom.
@@ -896,7 +913,7 @@ public readonly struct Money
 
 ---
 
-## 45. `out`
+## 46. `out`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Tham số output; method phải gán trước khi return.
@@ -912,7 +929,7 @@ if (int.TryParse("123", out int value))
 
 ---
 
-## 46. `params`
+## 47. `params`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Cho phép truyền số lượng đối số biến đổi (varargs).
@@ -931,7 +948,7 @@ Log("A", "B", "C");
 
 ---
 
-## 47. `private`
+## 48. `private`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Access modifier – chỉ trong cùng type.
@@ -947,7 +964,7 @@ public class User
 
 ---
 
-## 48. `protected`
+## 49. `protected`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Access modifier – trong type và lớp dẫn xuất.
@@ -961,7 +978,7 @@ public class Base
 
 ---
 
-## 49. `public`
+## 50. `public`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Access modifier – public ở khắp nơi nếu nhìn thấy type/assembly.
@@ -972,7 +989,7 @@ public class ApiClient { }
 
 ---
 
-## 50. `readonly`
+## 51. `readonly`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Field chỉ gán trong ctor hoặc tại điểm khai báo.
@@ -988,7 +1005,7 @@ public class Config
 
 ---
 
-## 51. `ref`
+## 52. `ref`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Tham số by-ref (đọc/ghi), C# 7+ có `ref local`, `ref return`.
@@ -1002,7 +1019,7 @@ void Swap(ref int a, ref int b)
 
 ---
 
-## 52. `return`
+## 53. `return`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Trả giá trị (nếu có) và kết thúc method/local function.
@@ -1013,7 +1030,7 @@ int Double(int x) => x * 2;
 
 ---
 
-## 53. `sbyte`
+## 54. `sbyte`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 8-bit có dấu; không CLS-compliant, hiếm dùng.
@@ -1024,7 +1041,7 @@ sbyte x = -5;
 
 ---
 
-## 54. `sealed`
+## 55. `sealed`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:**  
@@ -1037,7 +1054,7 @@ public sealed class FinalType { }
 
 ---
 
-## 55. `short`
+## 56. `short`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 16-bit có dấu.
@@ -1048,7 +1065,7 @@ short s = 10;
 
 ---
 
-## 56. `sizeof`
+## 57. `sizeof`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Trả kích thước (byte) của kiểu.
@@ -1059,7 +1076,7 @@ int size = sizeof(int); // 4
 
 ---
 
-## 57. `stackalloc`
+## 58. `stackalloc`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Cấp phát mảng trên stack, thường dùng với `Span<T>` hoặc pointer.
@@ -1070,7 +1087,7 @@ Span<int> span = stackalloc int[100];
 
 ---
 
-## 58. `static`
+## 59. `static`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Thành viên/kiểu thuộc về type, không thuộc instance.
@@ -1084,7 +1101,7 @@ public static class MathHelper
 
 ---
 
-## 59. `string`
+## 60. `string`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Chuỗi Unicode immutable (alias `System.String`).
@@ -1096,7 +1113,7 @@ s += " world"; // tạo string mới
 
 ---
 
-## 60. `struct`
+## 61. `struct`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Khai báo value type tùy biến.
@@ -1112,7 +1129,7 @@ public readonly struct Point
 
 ---
 
-## 61. `switch`
+## 62. `switch`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Câu lệnh rẽ nhánh nhiều nhánh; C# 8+ có thêm switch expression.
@@ -1131,7 +1148,7 @@ switch (day)
 
 ---
 
-## 62. `this`
+## 63. `this`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Tham chiếu tới instance hiện tại; trong extension method đứng trước tham số đầu tiên.
@@ -1153,7 +1170,7 @@ public static class StringExtensions
 
 ---
 
-## 63. `throw`
+## 64. `throw`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Ném exception.
@@ -1165,7 +1182,7 @@ if (id <= 0)
 
 ---
 
-## 64. `true`
+## 65. `true`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Hằng Boolean `true`.
@@ -1179,7 +1196,7 @@ while (true)
 
 ---
 
-## 65. `try`
+## 66. `try`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Bắt đầu khối có xử lý ngoại lệ (`catch`, `finally`).
@@ -1197,7 +1214,7 @@ catch (Exception ex)
 
 ---
 
-## 66. `typeof`
+## 67. `typeof`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Lấy `System.Type` của một kiểu.
@@ -1209,7 +1226,7 @@ Type t2 = typeof(List<int>);
 
 ---
 
-## 67. `uint`
+## 68. `uint`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 32-bit không dấu; không CLS-compliant.
@@ -1220,7 +1237,7 @@ uint u = 10u;
 
 ---
 
-## 68. `ulong`
+## 69. `ulong`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 64-bit không dấu.
@@ -1231,7 +1248,7 @@ ulong u = 10UL;
 
 ---
 
-## 69. `unchecked`
+## 70. `unchecked`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Tắt kiểm tra overflow.
@@ -1245,7 +1262,7 @@ unchecked
 
 ---
 
-## 70. `unsafe`
+## 71. `unsafe`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Cho phép dùng pointer, `stackalloc`, `fixed` – giống C/C++ style.
@@ -1259,7 +1276,7 @@ unsafe void Foo(int* p)
 
 ---
 
-## 71. `ushort`
+## 72. `ushort`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Số nguyên 16-bit không dấu.
@@ -1270,7 +1287,7 @@ ushort u = 10;
 
 ---
 
-## 72. `using`
+## 73. `using`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:**  
@@ -1286,7 +1303,7 @@ using var stream = File.OpenRead("data.txt");
 
 ---
 
-## 73. `virtual`
+## 74. `virtual`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Cho phép member được override trong lớp con.
@@ -1300,7 +1317,7 @@ public class Base
 
 ---
 
-## 74. `void`
+## 75. `void`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Kiểu trả về “không có gì”.
@@ -1311,7 +1328,7 @@ void Log(string message) => Console.WriteLine(message);
 
 ---
 
-## 75. `volatile`
+## 76. `volatile`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Field `volatile` đảm bảo read/write luôn đi thẳng bộ nhớ, cải thiện visibility giữa thread.
@@ -1322,7 +1339,7 @@ public volatile bool _stopped;
 
 ---
 
-## 76. `while`
+## 77. `while`
 
 - **Loại:** reserved · **C#:** 1.0  
 - **Mục đích:** Vòng lặp kiểm tra điều kiện trước mỗi lần lặp.
@@ -1337,51 +1354,3 @@ while (i < 10)
 
 ---
 
-## Contextual keywords (tóm tắt)
-
-> Contextual keyword: chỉ là keyword trong **một số ngữ cảnh**; ngoài ra vẫn có thể dùng làm tên biến/class.
-
-| Từ khóa   | Mục đích / ngữ cảnh chính                                  | C#   |
-|----------|-------------------------------------------------------------|------|
-| `add`    | Accessor `add` cho event                                    | 1.0  |
-| `allows` | Constraint `allows ref struct`                              | 13.0 |
-| `alias`  | `extern alias`, alias namespace                             | 2.0  |
-| `and`    | Pattern combinator AND                                      | 9.0  |
-| `ascending` | Thứ tự tăng trong LINQ `orderby`                        | 3.0  |
-| `args`   | Tham số dòng lệnh trong top-level statements               | 9.0  |
-| `async`  | Đánh dấu method/lambda bất đồng bộ                         | 5.0  |
-| `await`  | Chờ `Task` / `ValueTask`                                    | 5.0  |
-| `by`     | `group ... by` / `orderby ... by` trong LINQ               | 3.0  |
-| `descending` | Thứ tự giảm trong LINQ `orderby`                       | 3.0  |
-| `dynamic` | Kiểu dynamic – binding lúc runtime                        | 4.0  |
-| `equals` | `join ... on ... equals ...` trong LINQ                    | 3.0  |
-| `from`   | Bắt đầu LINQ query                                         | 3.0  |
-| `get`    | Accessor getter của property                               | 1.0  |
-| `global` | `global::` – namespace root                                | 2.0  |
-| `group`  | `group ... by ... into ...` trong LINQ                     | 3.0  |
-| `init`   | Init-only setter cho property                              | 9.0  |
-| `into`   | Đặt tên group or query continuation trong LINQ             | 3.0  |
-| `join`   | Kết hợp hai sequence trong LINQ                            | 3.0  |
-| `let`    | Tạo biến tạm trong LINQ query                              | 3.0  |
-| `managed`| Calling convention `delegate* managed<...>`                | 9.0  |
-| `nameof` | Lấy tên symbol thành string                                | 6.0  |
-| `nint`   | Native-sized int                                            | 9.0  |
-| `not`    | Pattern combinator NOT                                      | 9.0  |
-| `notnull`| Generic constraint “không được null”                        | 8.0  |
-| `nuint`  | Native-sized uint                                           | 9.0  |
-| `on`     | `join ... on ... equals ...`                                | 3.0  |
-| `or`     | Pattern combinator OR                                       | 9.0  |
-| `orderby`| Clause sắp xếp trong LINQ                                   | 3.0  |
-| `partial`| Chia nhỏ định nghĩa type/member                             | 2.0  |
-| `record` | Khai báo record / record struct                             | 9.0  |
-| `remove` | Accessor `remove` cho event                                 | 1.0  |
-| `required`| Property/field bắt buộc khởi tạo                           | 11.0 |
-| `select` | Chọn phần kết quả trong LINQ                                | 3.0  |
-| `set`    | Accessor setter của property                                | 1.0  |
-| `unmanaged` | Generic constraint “unmanaged struct”                    | 7.3  |
-| `value`  | Giá trị được gán vào setter / event accessor                | 1.0  |
-| `var`    | Suy luận kiểu local variable                                | 3.0  |
-| `when`   | Filter trong `catch` & pattern matching                     | 6.0  |
-| `where`  | Generic constraint / filter trong LINQ                      | 2.0  |
-| `with`   | Clone object theo kiểu copy-with                            | 9.0  |
-| `yield`  | Tạo iterator (`yield return`, `yield break`)                | 2.0  |
