@@ -22,4 +22,5 @@ Tham khảo khóa học này nếu bạn chưa biết về C# và .NET: [Khóa h
 - [Lập trình hướng đối tượng trong C#](oop.md)
 - [Tập hợp](collections-generics.md)
 - [LINQ](linq.md)
+- [Thread](threading.md)
 - [Lập trình bất đồng bộ](async.md)
