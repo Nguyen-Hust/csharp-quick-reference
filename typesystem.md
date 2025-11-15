@@ -210,7 +210,27 @@ object[] arr = new string[2];   // hợp lệ compile-time
 arr[0] = 123;                   // runtime: ArrayTypeMismatchException
 ```
 
-**`Span<T>`/`ReadOnlySpan<T>`** (byref-like, `ref struct`): lát cắt bộ nhớ hiệu quả, không cấp phát; dùng cho xử lý buffer, text. Không lưu trữ lâu dài, không dùng qua async/iterator.
+**`Span<T>`/`ReadOnlySpan<T>`** (byref-like, `ref struct`): Cho phép truy cập bô nhớ hiệu quả, an toàn, không cấp phát; dùng cho xử lý buffer, text. Không lưu trữ lâu dài, không dùng qua async/iterator.
+
+```csharp
+static void PrintLetters(ReadOnlySpan<char> span)
+{
+    foreach (var ch in span)
+    {
+        Console.Write($"{ch} ");
+    }
+    Console.WriteLine();
+}
+
+string text = "Hello";
+char[] buffer = { 'W', 'o', 'r', 'l', 'd' };
+
+// Cả 2 cái này đều compile được nhờ implicit conversion
+PrintLetters(text);
+PrintLetters(buffer);
+```
+
+> Từ C# 14, việc truyền string/T[] vào API nhận Span<T> / ReadOnlySpan<T> trở nên ‘tự nhiên’ hơn nhờ các implicit conversion mới.
 
 ---
 
