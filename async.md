@@ -12,17 +12,35 @@ Chương này tập trung vào **lập trình bất đồng bộ (asynchronous)*
 
 ## Mục lục
 
-1. [Tổng quan: Vì sao cần async?](#1-tổng-quan-vì-sao-cần-async)
-2. [Async method là gì?](#2-async-method-là-gì)
-3. [Kiểu trả về của async method](#3-kiểu-trả-về-của-async-method)
-4. [`await` hoạt động như thế nào?](#4-await-hoạt-động-như-thế-nào)
-5. [Async state machine (ý tưởng)](#5-async-state-machine-ý-tưởng)
-6. [Capture context & `ConfigureAwait(false)`](#6-capture-context--configureawaitfalse)
-7. [Exception trong async method](#7-exception-trong-async-method)
-8. [Cancellation & IProgress](#8-cancellation--iprogress)
-9. [Best practices khi dùng async/await](#9-best-practices-khi-dùng-asyncawait)
-10. [Async streams – `IAsyncEnumerable<T>` & `await foreach`](#10-async-streams--iasyncenumerablet--await-foreach)
-11. [Async streams: Cancellation, exception, best practices](#11-async-streams-cancellation-exception-best-practices)
+- [Lập trình bất đồng bộ trong C#](#lập-trình-bất-đồng-bộ-trong-c)
+  - [Mục lục](#mục-lục)
+  - [1. Tổng quan: Vì sao cần async?](#1-tổng-quan-vì-sao-cần-async)
+  - [2. Async method là gì?](#2-async-method-là-gì)
+  - [3. Kiểu trả về của async method](#3-kiểu-trả-về-của-async-method)
+    - [3.1 `Task` \& `Task<T>` – phổ biến nhất](#31-task--taskt--phổ-biến-nhất)
+    - [3.2 `ValueTask` / `ValueTask<T>`](#32-valuetask--valuetaskt)
+    - [3.3 `async void` – trường hợp đặc biệt](#33-async-void--trường-hợp-đặc-biệt)
+  - [4. `await` hoạt động như thế nào?](#4-await-hoạt-động-như-thế-nào)
+  - [5. Async state machine (ý tưởng)](#5-async-state-machine-ý-tưởng)
+  - [6. Capture context \& `ConfigureAwait(false)`](#6-capture-context--configureawaitfalse)
+  - [7. Exception trong async method](#7-exception-trong-async-method)
+    - [7.1 Khi `await` một Task](#71-khi-await-một-task)
+    - [7.2 Khi không `await` Task](#72-khi-không-await-task)
+  - [8. Cancellation \& IProgress](#8-cancellation--iprogress)
+    - [8.1 CancellationToken](#81-cancellationtoken)
+    - [8.2 Báo tiến độ với `IProgress<T>`](#82-báo-tiến-độ-với-iprogresst)
+  - [9. Best practices khi dùng async/await](#9-best-practices-khi-dùng-asyncawait)
+  - [10. Async streams – `IAsyncEnumerable<T>` \& `await foreach`](#10-async-streams--iasyncenumerablet--await-foreach)
+    - [10.1 Vấn đề trước khi có async streams](#101-vấn-đề-trước-khi-có-async-streams)
+    - [10.2 `IAsyncEnumerable<T>` \& `IAsyncEnumerator<T>`](#102-iasyncenumerablet--iasyncenumeratort)
+    - [10.3 Async iterator method](#103-async-iterator-method)
+    - [10.4 Duyệt bằng `await foreach`](#104-duyệt-bằng-await-foreach)
+  - [11. Async streams: Cancellation, exception, best practices](#11-async-streams-cancellation-exception-best-practices)
+    - [11.1 Cancellation](#111-cancellation)
+      - [Pattern 1: `[EnumeratorCancellation]` + `WithCancellation`](#pattern-1-enumeratorcancellation--withcancellation)
+      - [Pattern 2: Truyền `CancellationToken` bình thường](#pattern-2-truyền-cancellationtoken-bình-thường)
+    - [11.2 Exception \& dispose](#112-exception--dispose)
+    - [11.3 So sánh \& best practices](#113-so-sánh--best-practices)
 
 ---
 
@@ -83,6 +101,38 @@ public async Task<string> DownloadAsync(string url)
   - Nếu chưa xong → method **tạm thoát ra**, trả về một `Task` cho caller, và khi tác vụ xong, nó sẽ quay lại chạy từ sau `await`.
 
 ---
+
+Sơ đồ tuần tự (sequence diagram)
+```csharp
+async Task<int> FooAsync()
+{
+    var x = await BarAsync();      // (A)
+    return x + 1;                  // (B)
+}
+
+// Gọi:
+Task<int> t = FooAsync();          // (C)
+int r = await t;                   // (D)
+```
+
+```
+Caller                  FooAsync (SM)              BarAsync Task/Awaiter           Context/ThreadPool
+  |                           |                              |                               |
+  |---- call FooAsync() ----->|                              |                               |
+  |                           |-- create SM & Task ----------|                               |
+  |                           |-- await BarAsync() ----------> create awaiter                |
+  |                           |                              |-- IsCompleted? ---------------|
+  |                           |                              |            |                  |
+  |                           |          (YES) inline path   |            | (NO) async path  |
+  |                           |<----- GetResult() -----------|            |                  |
+  |                           |-- do (B) & set result -------|            |                  |
+  |<----------- Task done ----|                              |            |                  |
+  |                           |                                           |-- OnCompleted(SM.MoveNext)
+  |                           |                                           |-- later: completion happens
+  |                           |<-------------------- MoveNext ------------(posted via captured context)
+  |                           |-- GetResult(); do (B); set result ------- |
+  |<----------- Task done ----|                                           |
+```
 
 ## 3. Kiểu trả về của async method
 
