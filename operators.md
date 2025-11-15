@@ -251,6 +251,13 @@ var t = typeof(List<string>);    // System.Type
 Span<byte> buf = stackalloc byte[256]; // stack buffer
 ```
 
+> Từ C# 14 ta có thể dùng nameof với các kiểu generic mở
+
+```csharp
+Console.WriteLine(nameof(List<>));          // "List"
+Console.WriteLine(nameof(Dictionary<,>));   // "Dictionary"
+```
+
 ---
 
 ## 14. Operator overloading
