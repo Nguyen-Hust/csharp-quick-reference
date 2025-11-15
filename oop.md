@@ -160,7 +160,54 @@ public class Outer
 }
 ```
 
-- `partial` chia định nghĩa 1 type ra nhiều file.  
+- `partial` chia định nghĩa 1 type ra nhiều file. Từ C# 14 partial hỗ trợ constructors và event.
+
+```csharp
+
+// Partial constructor
+
+// File A
+public partial class Person
+{
+    public string Name { get; }
+    public int Age { get; }
+
+    public partial Person(string name, int age);
+}
+
+// File B
+public partial class Person
+{
+    public partial Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
+```
+
+```csharp
+// Partial event
+// File A
+public partial class ChatRoom
+{
+    public partial event EventHandler<string>? MessageReceived;
+}
+
+// File B
+public partial class ChatRoom
+{
+    public partial event EventHandler<string>? MessageReceived
+    {
+        add    { _messageReceived += value; }
+        remove { _messageReceived -= value; }
+    }
+
+    private EventHandler<string>? _messageReceived;
+}
+
+```
+
 - **Nested type** hữu ích gói gọn logic phụ, chia tách visibility.
 
 ### 1.8 Object initializer & `required`
